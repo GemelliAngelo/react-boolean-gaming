@@ -1,31 +1,18 @@
-import { useEffect, useState } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./assets/css/App.css";
+import DefaultLayout from "./layouts/DefaultLayout";
+import HomePage from "./pages/HomePage";
 
 function App() {
-  const [games, setGames] = useState([]);
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/games")
-      .then((res) => res.json())
-      .then((data) => setGames(data.data));
-  }, []);
-
   return (
-    <div className="container">
-      <div className="row">
-        {games &&
-          games.map((game) => (
-            <div key={game.id} className="col-4">
-              <div className="card">
-                <img
-                  src={`/img/${game.cover_url}`}
-                  alt={`cover-${game.title}`}
-                />
-              </div>
-            </div>
-          ))}
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/games" />} />
+        <Route path="games" element={<DefaultLayout />}>
+          <Route index element={<HomePage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
