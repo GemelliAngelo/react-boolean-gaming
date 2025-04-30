@@ -4,11 +4,11 @@ export default function Card({ game }) {
       <img
         src={"img/" + game.cover_url}
         alt={"cover-" + game.title}
-        className="img-fluid rounded"
+        className="card-img rounded"
       />
       <div className="card-body">
         <div className="d-flex justify-content-center align-items-center text-center h-100">
-          <h4 className="card-title">{game.title}</h4>
+          <h5 className="card-title">{game.title}</h5>
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Card from "../components/Card";
 
 export default function IndexPage({ games, genres }) {
@@ -9,7 +10,12 @@ export default function IndexPage({ games, genres }) {
       {games &&
         games.map((game) => (
           <div key={game.id} className="col-12 col-md-6 col-xxl-4">
-            <Card game={game} />
+            <Link
+              className="link-underline link-underline-opacity-0"
+              to={`${game.id}`}
+            >
+              <Card game={game} />
+            </Link>
           </div>
         ))}
     </div>

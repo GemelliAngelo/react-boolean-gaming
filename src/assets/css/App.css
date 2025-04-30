@@ -12,6 +12,14 @@ body {
   margin-right: 2rem;
 }
 
+.card-img {
+  transition: 0.3s;
+}
+
+.card:hover .card-img {
+  transform: scale(1.075);
+}
+
 .btn-custom-1 {
   background-color: #ff8800;
 }
