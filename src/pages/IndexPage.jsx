@@ -1,6 +1,6 @@
 import Card from "../components/Card";
 
-export default function IndexPage({ games }) {
+export default function IndexPage({ games, genres }) {
   return (
     <div className="row g-5">
       <div className="col-12">

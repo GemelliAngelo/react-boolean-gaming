@@ -1,53 +1,39 @@
 export default function Carousel({ games }) {
   let randomNumber;
   const randomElement = () => {
-    randomNumber = Math.floor(Math.random() * (games.length + 1) + 1);
+    const number = Math.floor(Math.random() * (games.length + 1) + 1);
+    randomNumber = number;
     return randomNumber;
   };
   return (
     randomElement() && (
-      <div id="carouselExample" className="carousel slide">
-        <div className="carousel-inner">
-          {games &&
-            games.map((game) => (
-              <div
-                key={game.id}
-                className={`carousel-item ${
-                  game.id == randomNumber ? "active" : ""
-                }`}
-              >
-                <img
-                  src={"img/" + game.cover_url}
-                  alt={"cover-" + game.title}
-                  className="d-block w-100"
-                />
-              </div>
-            ))}
+      <div className="row justify-content-center align-items-center">
+        <div className="col-12 col-lg-8">
+          <div
+            id="gamesCarousel"
+            className="carousel slide carousel-fade"
+            data-bs-ride="carousel"
+          >
+            <div className="carousel-inner">
+              {games &&
+                games.map((game) => (
+                  <div
+                    key={game.id}
+                    className={`carousel-item ${
+                      game.id == randomNumber ? "active" : ""
+                    }`}
+                    data-bs-interval="2000"
+                  >
+                    <img
+                      src={"img/" + game.cover_url}
+                      alt={"cover-" + game.title}
+                      className="d-block w-100"
+                    />
+                  </div>
+                ))}
+            </div>
+          </div>
         </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExample"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExample"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
-        </button>
       </div>
     )
   );
