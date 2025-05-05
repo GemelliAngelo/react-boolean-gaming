@@ -4,6 +4,7 @@ import "./assets/css/App.css";
 import DefaultLayout from "./layouts/DefaultLayout";
 import HomePage from "./pages/HomePage";
 import IndexPage from "./pages/IndexPage";
+import ShowPage from "./pages/ShowPage";
 
 function App() {
   const [games, setGames] = useState([]);
@@ -26,10 +27,13 @@ function App() {
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<HomePage games={games} genres={genres} />} />
-          <Route
-            path="games"
-            element={<IndexPage games={games} genres={genres} />}
-          />
+          <Route path="games">
+            <Route
+              index
+              element={<IndexPage games={games} genres={genres} />}
+            />
+            <Route path=":id" element={<ShowPage />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
