@@ -13,6 +13,7 @@ export default function ShowPage() {
       .then((res) => res.json())
       .then((data) => setGame(data.data));
   }, [id]);
+
   return (
     game && (
       <>
@@ -29,6 +30,7 @@ export default function ShowPage() {
             <h5 className="text-center">
               {game.publisher} / {game.developer}
             </h5>
+            {game.genre && <span>{game.genre.name}</span>}
             <div className="text-center">
               {game.platforms.map((platform) => {
                 return (

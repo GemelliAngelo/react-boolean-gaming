@@ -18,8 +18,12 @@ export default function Navbar({ games, setGames }) {
     e.preventDefault();
 
     setGames(() =>
-      games.filter((game) =>
-        game.title.toLowerCase().includes(input.searchInput.toLowerCase())
+      games.filter(
+        (game) =>
+          game.title.toLowerCase().includes(input.searchInput.toLowerCase()) ||
+          game.genre.name
+            .toLowerCase()
+            .includes(input.searchInput.toLowerCase())
       )
     );
     navigate("games");
