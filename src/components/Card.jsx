@@ -2,7 +2,7 @@ export default function Card({ game }) {
   return (
     <div className="card text-bg-dark border-0 h-100">
       <img
-        src={"img/" + game.cover_url}
+        src={"/img/" + game.cover_url}
         alt={"cover-" + game.title}
         className="card-img rounded"
       />

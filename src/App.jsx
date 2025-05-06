@@ -10,14 +10,16 @@ function App() {
   const [games, setGames] = useState([]);
   const [genres, setGenres] = useState([]);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/games")
+    fetch(apiUrl + "games")
       .then((res) => res.json())
       .then((data) => setGames(data.data));
   }, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/genres")
+    fetch(apiUrl + "genres")
       .then((res) => res.json())
       .then((data) => setGenres(data.data));
   }, []);
@@ -25,7 +27,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<DefaultLayout />}>
+        <Route
+          path="/"
+          element={<DefaultLayout games={games} setGames={setGames} />}
+        >
           <Route index element={<HomePage games={games} genres={genres} />} />
           <Route path="games">
             <Route

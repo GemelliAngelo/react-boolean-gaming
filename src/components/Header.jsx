@@ -1,9 +1,9 @@
 import Navbar from "./Navbar";
 
-export default function Header() {
+export default function Header({ games, setGames }) {
   return (
-    <header>
-      <Navbar />
+    <header className="sticky-top">
+      <Navbar games={games} setGames={setGames} />
     </header>
   );
 }

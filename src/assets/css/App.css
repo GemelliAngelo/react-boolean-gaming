@@ -1,5 +1,13 @@
-body {
-  min-height: 100vh;
+header {
+  min-height: 10vh;
+}
+
+main {
+  min-height: 80vh;
+}
+
+footer {
+  min-height: 10vh;
 }
 
 .navbar-logo {
@@ -28,4 +36,8 @@ body {
 }
 .btn-custom-2 {
   background-color: #4800a7;
+}
+
+.fa-star {
+  color: rgb(228, 186, 0);
 }
