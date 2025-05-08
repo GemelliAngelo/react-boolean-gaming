@@ -31,7 +31,12 @@ function App() {
           path="/"
           element={<DefaultLayout games={games} setGames={setGames} />}
         >
-          <Route index element={<HomePage games={games} genres={genres} />} />
+          <Route
+            index
+            element={
+              <HomePage games={games} setGames={setGames} genres={genres} />
+            }
+          />
           <Route path="games">
             <Route
               index

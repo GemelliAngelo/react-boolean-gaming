@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Carousel from "../components/Carousel";
 
-export default function HomePage({ games, genres }) {
+export default function HomePage({ games, setGames, genres }) {
   let num1 = Math.floor(Math.random() * (genres.length + 1) + 1);
   let num2 = Math.floor(Math.random() * (genres.length + 1) + 1);
   let num3 = Math.floor(Math.random() * (genres.length + 1) + 1);
+
+  const navigate = useNavigate();
+
+  const handleGenresFilter = (genre) => {
+    setGames(() => games.filter((game) => game.genre.name == genre.name));
+    navigate("games");
+  };
 
   return (
     <>
@@ -30,11 +37,12 @@ export default function HomePage({ games, genres }) {
             )
             .map((genre, index) => (
               <div key={genre.id} className="col-12 col-md-4 text-center">
-                <Link
+                <button
                   className={`btn btn-lg btn-custom-${index} bg-gradient w-100`}
+                  onClick={() => handleGenresFilter(genre)}
                 >
                   {genre.name}
-                </Link>
+                </button>
               </div>
             ))}
       </div>

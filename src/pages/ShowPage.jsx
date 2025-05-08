@@ -22,11 +22,11 @@ export default function ShowPage() {
         </div>
         <div className="d-flex flex-column flex-lg-row justify-content-center gap-2">
           <img
-            className="img-fluid w-75 rounded"
+            className="img-fluid w-100 rounded"
             src={"/img/" + game.cover_url}
             alt={"cover " + game.title}
           />
-          <div className="d-flex flex-lg-column justify-content-between align-items-center bg-black w-25 py-3 gap-2 rounded">
+          <div className="d-flex flex-column justify-content-between align-items-center bg-black w-auto py-3 gap-2 rounded">
             <h5 className="text-center">
               {game.publisher} / {game.developer}
             </h5>
