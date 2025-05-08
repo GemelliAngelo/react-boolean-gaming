@@ -5,11 +5,6 @@ header {
 main {
   min-height: 80vh;
 }
-
-footer {
-  min-height: 10vh;
-}
-
 .navbar-logo {
   height: 80px;
 }
