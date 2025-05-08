@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function Navbar({ games, setGames }) {
   const [input, setInput] = useState({});
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -17,16 +17,25 @@ export default function Navbar({ games, setGames }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setGames(() =>
-      games.filter(
-        (game) =>
-          game.title.toLowerCase().includes(input.searchInput.toLowerCase()) ||
-          game.genre.name
-            .toLowerCase()
-            .includes(input.searchInput.toLowerCase())
-      )
-    );
-    navigate("games");
+    if (input.searchInput) {
+      setGames(() =>
+        games.filter(
+          (game) =>
+            game.title
+              .toLowerCase()
+              .includes(input.searchInput.toLowerCase()) ||
+            game.genre.name
+              .toLowerCase()
+              .includes(input.searchInput.toLowerCase())
+        )
+      );
+
+      navigate("games");
+    } else {
+      fetch(apiUrl + "games")
+        .then((res) => res.json())
+        .then((data) => setGames(data.data));
+    }
   };
 
   return (
