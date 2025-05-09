@@ -2,6 +2,7 @@ import { useGamesContext } from "../contexts/GamesContext";
 import { Link, useNavigate } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import { useMemo } from "react";
+import Card from "../components/Card";
 
 export default function HomePage() {
   const { games, genres, filteredGames, setFilteredGames } = useGamesContext();
@@ -40,9 +41,9 @@ export default function HomePage() {
       </div>
       <Carousel games={games} />
       <hr />
-      <div className="row g-4">
+      <div className="row g-4 py-5">
         <div className="col-12">
-          <h2 className="my-3">Categorie più Ricercate</h2>
+          <h2 className="my-3 text-center">Categorie più Ricercate</h2>
         </div>
         {randomGenres.map((genre, index) => (
           <div key={genre.id} className="col-12 col-md-4 text-center">
@@ -54,6 +55,24 @@ export default function HomePage() {
             </button>
           </div>
         ))}
+      </div>
+      <hr />
+      <div className="row g-4 py-5">
+        <div className="col-12">
+          <h2 className="my-3 text-center">Hall Of Fame</h2>
+        </div>
+        {games
+          .filter((game) => game.rating > 9.5)
+          .map((game) => (
+            <div key={game.id} className="col-12 col-md-6 col-xxl-4">
+              <Link
+                className="link-underline link-underline-opacity-0"
+                to={`/games/${game.id}`}
+              >
+                <Card game={game} />
+              </Link>
+            </div>
+          ))}
       </div>
     </>
   );

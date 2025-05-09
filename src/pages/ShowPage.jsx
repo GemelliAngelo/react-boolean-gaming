@@ -59,9 +59,9 @@ export default function ShowPage() {
         <div className="py-3">
           <Link
             className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-            to={-1}
+            to="/games"
           >
-            {String.fromCharCode(8676)} Torna a tutti i giochi
+            {String.fromCharCode(8676)} Visualizza tutti i giochi
           </Link>
         </div>
       </>
