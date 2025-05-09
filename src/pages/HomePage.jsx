@@ -1,6 +1,7 @@
 import { useGamesContext } from "../contexts/GamesContext";
 import { Link, useNavigate } from "react-router-dom";
 import Carousel from "../components/Carousel";
+import { useMemo } from "react";
 
 export default function HomePage() {
   const { games, genres, filteredGames, setFilteredGames } = useGamesContext();
@@ -12,11 +13,20 @@ export default function HomePage() {
   const navigate = useNavigate();
 
   const handleGenresFilter = (genre) => {
-    setFilteredGames(() =>
-      games.filter((game) => game.genre.name == genre.name)
-    );
-    navigate("games");
+    const filtered = games.filter((game) => game.genre?.name === genre.name);
+    setFilteredGames(filtered);
+
+    if (filtered.length) {
+      navigate("games");
+    }
   };
+
+  const randomGenres = useMemo(() => {
+    if (!genres || genres.length < 3) return [];
+
+    const shuffled = [...genres].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
+  }, [genres]);
 
   return (
     <>
@@ -34,22 +44,16 @@ export default function HomePage() {
         <div className="col-12">
           <h2 className="my-3">Categorie più Ricercate</h2>
         </div>
-        {genres &&
-          genres
-            .filter(
-              (genre) =>
-                genre.id == num1 || genre.id == num2 || genre.id == num3
-            )
-            .map((genre, index) => (
-              <div key={genre.id} className="col-12 col-md-4 text-center">
-                <button
-                  className={`btn btn-lg btn-custom-${index} bg-gradient w-100`}
-                  onClick={() => handleGenresFilter(genre)}
-                >
-                  {genre.name}
-                </button>
-              </div>
-            ))}
+        {randomGenres.map((genre, index) => (
+          <div key={genre.id} className="col-12 col-md-4 text-center">
+            <button
+              className={`btn btn-lg btn-custom-${index} bg-gradient w-100`}
+              onClick={() => handleGenresFilter(genre)}
+            >
+              {genre.name}
+            </button>
+          </div>
+        ))}
       </div>
     </>
   );
