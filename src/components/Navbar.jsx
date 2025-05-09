@@ -1,10 +1,15 @@
+import { useGamesContext } from "../contexts/GamesContext";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import { useState } from "react";
 
-export default function Navbar({ games, setGames }) {
-  const [input, setInput] = useState({});
-  const apiUrl = import.meta.env.VITE_API_URL;
+export default function Navbar() {
+  const { games, fetchGames, setGames, filteredGames, setFilteredGames } =
+    useGamesContext();
+  const defaultInput = {
+    searchInput: "",
+  };
+  const [input, setInput] = useState(defaultInput);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -18,7 +23,7 @@ export default function Navbar({ games, setGames }) {
     e.preventDefault();
 
     if (input.searchInput) {
-      setGames(() =>
+      setFilteredGames(() =>
         games.filter(
           (game) =>
             game.title
@@ -31,10 +36,9 @@ export default function Navbar({ games, setGames }) {
       );
 
       navigate("games");
+      setInput(defaultInput);
     } else {
-      fetch(apiUrl + "games")
-        .then((res) => res.json())
-        .then((data) => setGames(data.data));
+      fetchGames();
     }
   };
 
@@ -68,16 +72,13 @@ export default function Navbar({ games, setGames }) {
                 name="searchInput"
                 id="searchInput"
                 placeholder="Cerca un titolo o un genere"
+                value={input.searchInput}
               />
             </div>
           </form>
           <ul className="navbar-nav gap-2 text-center">
             <li className="nav-item border rounded">
-              <Link
-                className="nav-link text-warning"
-                aria-current="page"
-                to="/"
-              >
+              <Link className="nav-link text-warning" to="/">
                 Home
               </Link>
             </li>

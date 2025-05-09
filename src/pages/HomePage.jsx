@@ -1,7 +1,10 @@
+import { useGamesContext } from "../contexts/GamesContext";
 import { Link, useNavigate } from "react-router-dom";
 import Carousel from "../components/Carousel";
 
-export default function HomePage({ games, setGames, genres }) {
+export default function HomePage() {
+  const { games, genres, filteredGames, setFilteredGames } = useGamesContext();
+
   let num1 = Math.floor(Math.random() * (genres.length + 1) + 1);
   let num2 = Math.floor(Math.random() * (genres.length + 1) + 1);
   let num3 = Math.floor(Math.random() * (genres.length + 1) + 1);
@@ -9,7 +12,9 @@ export default function HomePage({ games, setGames, genres }) {
   const navigate = useNavigate();
 
   const handleGenresFilter = (genre) => {
-    setGames(() => games.filter((game) => game.genre.name == genre.name));
+    setFilteredGames(() =>
+      games.filter((game) => game.genre.name == genre.name)
+    );
     navigate("games");
   };
 
