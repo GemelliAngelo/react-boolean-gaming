@@ -1,7 +1,7 @@
 import { useGamesContext } from "../contexts/GamesContext";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../components/Card";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function IndexPage() {
   const {
@@ -15,6 +15,8 @@ export default function IndexPage() {
     setPlatforms,
   } = useGamesContext();
 
+  const [filters, setFilters] = useState({});
+
   useEffect(() => {
     if (!filteredGames.length) {
       setFilteredGames(games);
@@ -22,10 +24,15 @@ export default function IndexPage() {
   }, [filteredGames, games]);
 
   const handleFilters = (e) => {
-    const selectedId = Number(e.target.value);
+    const newFilters = { ...filters, [e.target.name]: e.target.value };
+    setFilters(newFilters);
+
     setFilteredGames(() =>
-      games.filter((game) =>
-        game.platforms.some((platform) => platform.id === selectedId)
+      games.filter(
+        (game) =>
+          game.platforms.some(
+            (platform) => platform.id === newFilters.platforms
+          ) || game.rating <= newFilters.rating
       )
     );
   };
@@ -37,8 +44,8 @@ export default function IndexPage() {
         <form className="d-flex justify-content-center gap-3 border rounded p-3">
           <select
             className="form-select text-center bg-black text-white"
-            name="platform"
-            id="platform"
+            name="platforms"
+            id="platforms"
             defaultValue="default"
             onChange={handleFilters}
           >
@@ -59,6 +66,7 @@ export default function IndexPage() {
             id="rating"
             className="form-select text-center bg-black text-white"
             defaultValue="default"
+            onChange={handleFilters}
           >
             <option value="default">Filtra per Valutazione</option>
             <option className="fa-solid fa-star" value="2">
