@@ -35,7 +35,7 @@ export default function IndexPage() {
         (game) =>
           game.platforms.some(
             (platform) => platform.id === Number(newFilters.platforms)
-          ) || game.rating <= newFilters.rating
+          ) || Number(game.price) <= Number(newFilters.price)
       )
     );
   };
@@ -65,28 +65,19 @@ export default function IndexPage() {
               ))}
           </select>
           <select
-            name="rating"
-            id="rating"
+            name="price"
+            id="price"
             className="form-select text-center bg-black text-white"
             defaultValue="default"
             onChange={handleFilters}
           >
-            <option value="default">Filtra per Valutazione</option>
-            <option className="fa-solid fa-star" value="2">
-              &#x2605; 1-2
-            </option>
-            <option className="fa-solid fa-star" value="4">
-              &#x2605; 3-4
-            </option>
-            <option className="fa-solid fa-star" value="6">
-              &#x2605; 5-6
-            </option>
-            <option className="fa-solid fa-star" value="8">
-              &#x2605; 7-8
-            </option>
-            <option className="fa-solid fa-star" value="10">
-              &#x2605; 9-10
-            </option>
+            <option value="default">Filtra per Prezzo</option>
+            <option value="0">Free-to-play</option>
+            <option value="20">Fino a 20 &#8364;</option>
+            <option value="40">Fino a 40 &#8364;</option>
+            <option value="60">Fino a 60 &#8364;</option>
+            <option value="80">Fino a 80 &#8364;</option>
+            <option value="100">Fino a 100 &#8364;</option>
           </select>
         </form>
       </div>
