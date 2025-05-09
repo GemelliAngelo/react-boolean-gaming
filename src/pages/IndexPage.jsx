@@ -41,7 +41,7 @@ export default function IndexPage() {
     <>
       <div className="text-center pt-4">
         <h1 className="mb-4">Giochi</h1>
-        <form className="d-flex justify-content-center gap-3 border rounded p-3">
+        <form className="d-flex flex-column flex-sm-row justify-content-center gap-3 border rounded p-3">
           <select
             className="form-select text-center bg-black text-white"
             name="platforms"
