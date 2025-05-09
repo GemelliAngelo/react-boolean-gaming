@@ -9,7 +9,11 @@ export default function Carousel({ games }) {
     randomElement() && (
       <div className="row justify-content-center align-items-center">
         <div className="col-12 col-lg-8">
-          <div id="gamesCarousel" className="carousel slide">
+          <div
+            id="gamesCarousel"
+            className="carousel slide"
+            data-bs-ride="true"
+          >
             <div className="carousel-inner">
               {games &&
                 games.map((game) => (
@@ -18,6 +22,7 @@ export default function Carousel({ games }) {
                     className={`carousel-item ${
                       game.id == randomNumber ? "active" : ""
                     }`}
+                    data-bs-interval="2000"
                   >
                     <img
                       src={"img/" + game.cover_url}

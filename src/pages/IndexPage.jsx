@@ -19,24 +19,24 @@ export default function IndexPage() {
     if (!filteredGames.length) {
       setFilteredGames(games);
     }
-  }, [filteredGames.length, games]);
+  }, [filteredGames, games]);
 
   const handleFilters = (e) => {
-    setFilteredGames(games);
+    const selectedId = Number(e.target.value);
     setFilteredGames(() =>
-      games.filter((game) => {
-        game.platforms.find((platform) => platform.id == e.target.value);
-      })
+      games.filter((game) =>
+        game.platforms.some((platform) => platform.id === selectedId)
+      )
     );
   };
 
   return (
     <>
-      <div className="py-4">
-        <h1 className="my-4">Giochi</h1>
-        <form className="d-flex justify-content-end">
+      <div className="text-center pt-4">
+        <h1 className="mb-4">Giochi</h1>
+        <form className="d-flex justify-content-center gap-3 border rounded p-3">
           <select
-            className="form-select w-auto bg-black text-white"
+            className="form-select text-center bg-black text-white"
             name="platform"
             id="platform"
             defaultValue="default"
@@ -54,9 +54,32 @@ export default function IndexPage() {
                 </option>
               ))}
           </select>
+          <select
+            name="rating"
+            id="rating"
+            className="form-select text-center bg-black text-white"
+            defaultValue="default"
+          >
+            <option value="default">Filtra per Valutazione</option>
+            <option className="fa-solid fa-star" value="2">
+              &#x2605; 1-2
+            </option>
+            <option className="fa-solid fa-star" value="4">
+              &#x2605; 3-4
+            </option>
+            <option className="fa-solid fa-star" value="6">
+              &#x2605; 5-6
+            </option>
+            <option className="fa-solid fa-star" value="8">
+              &#x2605; 7-8
+            </option>
+            <option className="fa-solid fa-star" value="10">
+              &#x2605; 9-10
+            </option>
+          </select>
         </form>
       </div>
-      <div className="row g-5">
+      <div className="row g-5 pt-4">
         {filteredGames &&
           filteredGames.map((game) => (
             <div key={game.id} className="col-12 col-md-6 col-xxl-4">
