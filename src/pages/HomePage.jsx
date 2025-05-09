@@ -43,7 +43,9 @@ export default function HomePage() {
       <hr />
       <div className="row g-4 py-5">
         <div className="col-12">
-          <h2 className="my-3 text-center">Categorie più Ricercate</h2>
+          <h2 className="my-3 text-center text-decoration-underline">
+            Categorie più Ricercate
+          </h2>
         </div>
         {randomGenres.map((genre, index) => (
           <div key={genre.id} className="col-12 col-md-4 text-center">
@@ -57,14 +59,17 @@ export default function HomePage() {
         ))}
       </div>
       <hr />
-      <div className="row g-4 py-5">
+      <div className="row justify-content-center g-4 py-5">
         <div className="col-12">
-          <h2 className="my-3 text-center">Hall Of Fame</h2>
+          <h2 className="my-3 text-center text-decoration-underline">
+            Hall Of Fame
+          </h2>
         </div>
-        {games
-          .filter((game) => game.rating > 9.5)
+        {[...games]
+          .sort((a, b) => b.rating - a.rating)
+          .slice(0, 4)
           .map((game) => (
-            <div key={game.id} className="col-12 col-md-6 col-xxl-4">
+            <div key={game.id} className="col-7">
               <Link
                 className="link-underline link-underline-opacity-0"
                 to={`/games/${game.id}`}

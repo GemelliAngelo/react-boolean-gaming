@@ -24,14 +24,17 @@ export default function IndexPage() {
   }, [filteredGames, games]);
 
   const handleFilters = (e) => {
-    const newFilters = { ...filters, [e.target.name]: e.target.value };
+    const newFilters = {
+      ...filters,
+      [e.target.name]: e.target.value,
+    };
     setFilters(newFilters);
 
     setFilteredGames(() =>
       games.filter(
         (game) =>
           game.platforms.some(
-            (platform) => platform.id === newFilters.platforms
+            (platform) => platform.id === Number(newFilters.platforms)
           ) || game.rating <= newFilters.rating
       )
     );
@@ -40,7 +43,7 @@ export default function IndexPage() {
   return (
     <>
       <div className="text-center pt-4">
-        <h1 className="mb-4">Giochi</h1>
+        <h1 className="mb-4 text-decoration-underline">Giochi</h1>
         <form className="d-flex flex-column flex-sm-row justify-content-center gap-3 border rounded p-3">
           <select
             className="form-select text-center bg-black text-white"
