@@ -38,7 +38,7 @@ export default function Navbar() {
       navigate("games");
       setInput(defaultInput);
     } else {
-      fetchGames();
+      setFilteredGames(games);
     }
   };
 

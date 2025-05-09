@@ -1,7 +1,7 @@
 import { useGamesContext } from "../contexts/GamesContext";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../components/Card";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function IndexPage() {
   const {
@@ -16,8 +16,10 @@ export default function IndexPage() {
   } = useGamesContext();
 
   useEffect(() => {
-    setFilteredGames(games);
-  }, [games]);
+    if (!filteredGames.length) {
+      setFilteredGames(games);
+    }
+  }, [filteredGames.length, games]);
 
   const handleFilters = (e) => {
     setFilteredGames(games);
