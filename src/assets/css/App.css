@@ -24,13 +24,15 @@ main {
 }
 
 .btn-custom-0 {
-  background-color: #ff8800;
+  color: white;
+  background-color: #ff0000;
 }
 .btn-custom-1 {
-  background-color: #67ffb8;
+  color: white;
+  background-color: #0000ff;
 }
 .btn-custom-2 {
-  background-color: #4800a7;
+  background-color: #00ff00;
 }
 
 .fa-star {

@@ -48,7 +48,7 @@ export default function HomePage() {
         {randomGenres.map((genre, index) => (
           <div key={genre.id} className="col-12 col-md-4 text-center">
             <button
-              className={`btn btn-lg btn-custom-${index} bg-gradient w-100`}
+              className={`btn btn-custom-${index} btn-lg bg-gradient w-100 py-4`}
               onClick={() => handleGenresFilter(genre)}
             >
               {genre.name}
