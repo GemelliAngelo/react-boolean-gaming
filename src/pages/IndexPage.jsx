@@ -35,7 +35,9 @@ export default function IndexPage() {
         (game) =>
           game.platforms.some(
             (platform) => platform.id === Number(newFilters.platforms)
-          ) || Number(game.price) <= Number(newFilters.price)
+          ) ||
+          Number(game.price) <= Number(newFilters.price) ||
+          game.genre.id == newFilters.genres
       )
     );
   };
@@ -61,6 +63,21 @@ export default function IndexPage() {
                   style={{ color: platform.color }}
                 >
                   {platform.name}
+                </option>
+              ))}
+          </select>
+          <select
+            className="form-select text-center bg-black text-white"
+            name="genres"
+            id="genres"
+            defaultValue="default"
+            onChange={handleFilters}
+          >
+            <option value="default">Filtra per Genere</option>
+            {genres &&
+              genres.map((genre) => (
+                <option key={genre.id} value={genre.id}>
+                  {genre.name}
                 </option>
               ))}
           </select>
