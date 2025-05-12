@@ -43,9 +43,7 @@ export default function HomePage() {
       <hr />
       <div className="row g-4 py-5">
         <div className="col-12">
-          <h2 className="my-3 text-center text-decoration-underline">
-            Categorie più Ricercate
-          </h2>
+          <h2 className="my-3 text-center">CATEGORIE PIÙ RICERCATE</h2>
         </div>
         {randomGenres.map((genre, index) => (
           <div key={genre.id} className="col-12 col-md-4 text-center">
@@ -61,9 +59,7 @@ export default function HomePage() {
       <hr />
       <div className="row justify-content-center g-4 py-5">
         <div className="col-12">
-          <h2 className="my-3 text-center text-decoration-underline">
-            Hall Of Fame
-          </h2>
+          <h2 className="my-3 text-center">HALL OF FAME</h2>
         </div>
         {[...games]
           .sort((a, b) => b.rating - a.rating)
