@@ -63,8 +63,11 @@ export default function Navbar() {
           className="collapse navbar-collapse justify-content-between"
           id="navbarNav"
         >
-          <form onSubmit={handleSubmit} className="w-50 text-center mx-auto">
-            <div>
+          <form onSubmit={handleSubmit} className="w-75 text-center mx-auto">
+            <div className="input-group">
+              <span className="input-group-text">
+                <i className="fa-solid fa-search"></i>
+              </span>
               <input
                 onChange={handleChange}
                 className="form-control"
@@ -77,12 +80,12 @@ export default function Navbar() {
             </div>
           </form>
           <ul className="navbar-nav gap-2 text-center">
-            <li className="nav-item border rounded">
+            <li className="nav-item">
               <Link className="nav-link text-warning" to="/">
                 Home
               </Link>
             </li>
-            <li className="nav-item border rounded">
+            <li className="nav-item">
               <Link className="nav-link text-warning" to="/games">
                 Giochi
               </Link>
